@@ -1,0 +1,16 @@
+<div class="center">
+    <div *ngIf="(data$|async) as data; else loading">
+      <div *ngIf="data.error; else success">
+        FEHLER. Die Transaktion konnte nicht gefunden werden.
+      </div>
+      <ng-template #success>
+        <div class="content-html" [innerHTML]="convertService.toAscii(data.result.input)"></div>
+        <div class="content-link">
+          Die gesamte <a target="_blank" href="https://goerli.etherscan.io/tx/{{id}}">Transaktion auf Etherscan</a>
+        </div>
+      </ng-template>
+     </div>
+    <ng-template #loading>
+      Lädt
+    </ng-template>
+</div>
